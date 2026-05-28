@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { UserProvider } from './context/UserContext'
+import Navbar from './components/navbar'
 import UserCard from './components/UserCard'
+
  
 export default function App() {
   const [users, setUsers] = useState([])
@@ -28,6 +30,8 @@ export default function App() {
   return (
     <UserProvider>
       <div className="min-h-screen bg-gray-50 flex flex-col">
+        {/* Navbar*/}
+        <Navbar onSearch={setSearchQuery} />
  
         <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-6">
           {/* Loading state */}
