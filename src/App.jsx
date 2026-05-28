@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { UserProvider } from './context/UserContext'
 import Navbar from './components/navbar'
 import UserCard from './components/UserCard'
-
+import Footer from './components/footer'
  
 export default function App() {
   const [users, setUsers] = useState([])
@@ -52,6 +52,8 @@ export default function App() {
           </div>
         </main>
  
+        {/* Footer */}
+        <Footer />
       </div>
     </UserProvider>
   )
