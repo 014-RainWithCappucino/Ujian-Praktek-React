@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { UserProvider } from './context/UserContext'
 import Navbar from './components/navbar'
-import UserCard from './components/UserCard'
+import UserCard from './components/userCard'
 import Footer from './components/footer'
  
 export default function App() {
@@ -10,15 +10,27 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
  
   // Fetch 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data)
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
-  }, [])
+ useEffect(() => {
+  async function PengambilanAPI() {
+    try {
+      const getAPI = await fetch('https://jsonplaceholder.typicode.com/users')
+
+      if (!getAPI.ok) {
+        throw new Error("gagal mengambil API")
+      }
+
+      const data = await getAPI.json()
+      setUsers(data)
+
+    } catch(err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  PengambilanAPI()
+}, [])
  
   // Filter user
   const filteredUsers = users.filter(
