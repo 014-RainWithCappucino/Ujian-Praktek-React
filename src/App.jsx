@@ -5,9 +5,10 @@ import UserCard from './components/userCard'
 import Footer from './components/footer'
  
 export default function App() {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [error, setError] = useState(null);
  
   // Fetch 
  useEffect(() => {
@@ -16,18 +17,19 @@ export default function App() {
       const getAPI = await fetch('https://jsonplaceholder.typicode.com/users')
 
       if (!getAPI.ok) {
-        throw new Error("gagal mengambil API")
+        throw new Error("gagal mengambil API");
       }
 
-      const data = await getAPI.json()
-      setUsers(data)
+      const data = await getAPI.json();
+      setUsers(data);
 
     } catch(err) {
-      console.error(err)
+      console.error(err);
+      setError('Gagal mengambil data. Coba lagi nanti.');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   PengambilanAPI()
 }, [])
@@ -37,7 +39,7 @@ export default function App() {
     (user) =>
       user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.username.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  );
  
   return (
     <UserProvider>
@@ -50,12 +52,18 @@ export default function App() {
           {loading && (
             <p className="text-center text-gray-400 mt-10">Memuat data...</p>
           )}
- 
-          {/* 404 */}
-          {!loading && filteredUsers.length === 0 && (
+
+          {!loading && error && (
+            <p className="text-center text-red-400 mt-10">{error}</p>
+          )}
+
+           {/* 404 */}
+          {!loading && !error && filteredUsers.length === 0 && (
             <p className="text-center text-gray-400 mt-10">User tidak ditemukan.</p>
           )}
- 
+
+          
+
           {/* Grid UserCard */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {filteredUsers.map((user) => (
