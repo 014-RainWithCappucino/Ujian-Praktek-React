@@ -14,7 +14,7 @@ export default function UserCard({ user }) {
     .join('')
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-5 flex flex-col gap-3 hover:shadow-sm transition-shadow">
+    <div className="bg-white rounded-2xl border border-gray-200 p-7 flex flex-col gap-4 hover:shadow-sm transition-shadow">
       {/* Header: avatar + nama + username */}
       <div className="flex items-center gap-3">
         <div className="w-11 h-11 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center text-base shrink-0">
