@@ -1,11 +1,11 @@
-import { useRef } from 'react'
+import { useRef } from 'react';
 
 export default function Navbar({ onSearch }) {
-  const searchRef = useRef('')
+  const searchRef = useRef('');
 
   function handleChange(e) {
     searchRef.current = e.target.value
-    onSearch(searchRef.current)
+    onSearch(searchRef.current);
   }
 
   return (
@@ -26,4 +26,4 @@ export default function Navbar({ onSearch }) {
       </div>
     </nav>
   )
-}
+};

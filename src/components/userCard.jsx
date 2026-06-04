@@ -1,10 +1,10 @@
-import { useUserContext } from '../context/UserContext'
+import { useUserContext } from '../context/UserContext';
 
 export default function UserCard({ user }) {
-  const { likedUsers, followedUsers, toggleLike, toggleFollow } = useUserContext()
+  const { likedUsers, followedUsers, toggleLike, toggleFollow } = useUserContext();
 
-  const isLiked = likedUsers.includes(user.id)
-  const isFollowed = followedUsers.includes(user.id)
+  const isLiked = likedUsers.includes(user.id);
+  const isFollowed = followedUsers.includes(user.id);
 
   // Ambil inisial dari nama untuk avatar
   const initials = user.name
@@ -57,4 +57,4 @@ export default function UserCard({ user }) {
       </div>
     </div>
   )
-}
+};

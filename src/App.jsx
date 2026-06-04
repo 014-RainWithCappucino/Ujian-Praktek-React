@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import { UserProvider } from './context/UserContext'
-import Navbar from './components/navbar'
-import UserCard from './components/userCard'
-import Footer from './components/footer'
+import { useState, useEffect } from 'react';
+import { UserProvider } from './context/UserContext';
+import Navbar from './components/navbar';
+import UserCard from './components/userCard';
+import Footer from './components/footer';
  
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -31,7 +31,7 @@ export default function App() {
     }
   };
 
-  PengambilanAPI()
+  PengambilanAPI();
 }, [])
  
   // Filter user

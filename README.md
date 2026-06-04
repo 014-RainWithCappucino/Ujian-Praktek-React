@@ -51,16 +51,16 @@ Digunakan di `App.jsx` untuk menyimpan state utama aplikasi, dan di `UserContext
  
 ```js
 // App.jsx
-const [users, setUsers] = useState([])
-const [loading, setLoading] = useState(true)
-const [searchQuery, setSearchQuery] = useState('')
-const [error, setError] = useState(null)
+const [users, setUsers] = useState([]);
+const [loading, setLoading] = useState(true);
+const [searchQuery, setSearchQuery] = useState('');
+const [error, setError] = useState(null);
 ```
 
 ```js
 // UserContext.jsx
-const [likedUsers, setLikedUsers] = useState([])
-const [followedUsers, setFollowedUsers] = useState([])
+const [likedUsers, setLikedUsers] = useState([]);
+const [followedUsers, setFollowedUsers] = useState([]);
 ```
  
 ### `useEffect`
@@ -71,24 +71,24 @@ Digunakan di `App.jsx` untuk menjalankan fetch API ketika komponen pertama kali 
 useEffect(() => {
   async function PengambilanAPI() {
     try {
-      const getAPI = await fetch('https://jsonplaceholder.typicode.com/users')
+      const getAPI = await fetch('https://jsonplaceholder.typicode.com/users');
  
       if (!getAPI.ok) {
-        throw new Error("gagal mengambil API")
+        throw new Error("gagal mengambil API");
       }
  
-      const data = await getAPI.json()
-      setUsers(data)
+      const data = await getAPI.json();
+      setUsers(data);
  
     } catch(err) {
-      console.error(err)
-      setError('Gagal mengambil data. Coba lagi nanti.')
+      console.error(err);
+      setError('Gagal mengambil data. Coba lagi nanti.');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
  
-  PengambilanAPI()
+  PengambilanAPI();
 }, [])
 ```
  
@@ -98,16 +98,16 @@ Dibuat di UserContext.jsx menggunakan createContext(), lalu dipakai di userCard.
  
 ```js
 // UserContext.jsx — membuat context
-const UserContext = createContext()
+const UserContext = createContext();
  
-export function useUserContext()     {
-  return useContext(UserContext)
+export function useUserContext(){
+  return useContext(UserContext);
 }
 ```
 
 ```js
 // userCard.jsx — mengakses context
-const { likedUsers, followedUsers, toggleLike, toggleFollow } = useUserContext()
+const { likedUsers, followedUsers, toggleLike, toggleFollow } = useUserContext();
 ```
  
 ### `useRef`
@@ -115,10 +115,10 @@ const { likedUsers, followedUsers, toggleLike, toggleFollow } = useUserContext()
 Digunakan di `navbar.jsx` untuk menyimpan nilai input pencarian. Perubahan nilai di `useRef` tidak memicu *re-render* pada komponen Navbar, sehingga lebih efisien dibanding mengunakan `useState`.
  
 ```js
-const searchRef = useRef('')
+const searchRef = useRef('');
  
 function handleChange(e) {
   searchRef.current = e.target.value
   onSearch(searchRef.current)
-}
+};
 ```
