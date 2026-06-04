@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { UserProvider } from './context/UserContext';
+import { UserProvider } from './context/userContext';
 import Navbar from './components/navbar';
 import UserCard from './components/userCard';
 import Footer from './components/footer';
